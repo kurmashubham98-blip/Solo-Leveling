@@ -11,14 +11,20 @@ const defaultData = [
 
 export const StatChart = ({ data = defaultData }: StatChartProps) => {
     return (
-        <div className="h-[350px] w-full bg-card-bg/50 backdrop-blur-sm p-6 border border-muted rounded-sm relative overflow-hidden group">
+        <div className="h-[350px] w-full bg-panel-bg/90 backdrop-blur-sm p-6 border border-primary/20 rounded-sm relative overflow-hidden group shadow-system-panel">
             <div className="flex items-center justify-between mb-6 z-10 relative">
-                <h3 className="text-sm font-heading tracking-wider text-muted-foreground uppercase">System: Growth Rate</h3>
-                <span className="text-xs text-primary font-mono animate-pulse">LIVE FEED</span>
+                <h3 className="text-sm font-heading tracking-widest text-muted-foreground uppercase flex items-center gap-2">
+                    <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
+                    Growth Metrics
+                </h3>
+                <div className="flex items-center gap-2 text-xs font-mono text-primary">
+                    <span className="animate-pulse">● LIVE</span>
+                    <span className="opacity-50">v.1.0.4</span>
+                </div>
             </div>
 
             {/* Background Grid decorative */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(0,240,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,240,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none opacity-50" />
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(0,240,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,240,255,0.02)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none" />
 
             <ResponsiveContainer width="100%" height="80%">
                 <LineChart data={data}>
@@ -41,13 +47,13 @@ export const StatChart = ({ data = defaultData }: StatChartProps) => {
                         dx={-10}
                     />
                     <Tooltip
-                        contentStyle={{ backgroundColor: '#050505', border: '1px solid #1f1f1f', borderRadius: '4px' }}
+                        contentStyle={{ backgroundColor: '#000000', border: '1px solid #00F0FF', borderRadius: '2px', boxShadow: '0 0 10px rgba(0,240,255,0.2)' }}
                         itemStyle={{ color: '#00F0FF', fontFamily: 'Share Tech Mono' }}
-                        labelStyle={{ color: '#A3A3A3', marginBottom: '0.5rem', fontFamily: 'Orbitron' }}
+                        labelStyle={{ color: '#A3A3A3', marginBottom: '0.5rem', fontFamily: 'Orbitron', letterSpacing: '0.1em' }}
                         cursor={{ stroke: '#00F0FF', strokeWidth: 1, strokeDasharray: '4 4' }}
                     />
                     <Line
-                        type="step"
+                        type="monotone"
                         dataKey="xp"
                         stroke="#00F0FF"
                         strokeWidth={2}
