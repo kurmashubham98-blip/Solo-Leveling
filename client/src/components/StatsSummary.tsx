@@ -1,30 +1,50 @@
 import { Card } from './ui/card';
 
-export const StatsSummary = ({ stats }: { stats: any }) => {
-  const statItems = [
-    { label: 'STR', value: stats?.strength || 10, name: 'Strength' },
-    { label: 'AGI', value: stats?.agility || 10, name: 'Agility' },
-    { label: 'INT', value: stats?.intelligence || 10, name: 'Intelligence' },
-    { label: 'VIT', value: stats?.vitality || 10, name: 'Vitality' },
-    { label: 'SEN', value: stats?.sense || 10, name: 'Sense' },
-  ];
+const stats = [
+    { label: 'STRENGTH', value: 85, code: 'STR', color: 'text-danger' },
+    { label: 'AGILITY', value: 72, code: 'AGI', color: 'text-primary' },
+    { label: 'SENSE', value: 92, code: 'SNS', color: 'text-secondary' },
+    { label: 'VITALITY', value: 64, code: 'VIT', color: 'text-success' },
+    { label: 'INTELLIGENCE', value: 88, code: 'INT', color: 'text-warning' }
+];
 
-  return (
-    <Card className='p-6 space-y-6'>
-       <h3 className='text-lg font-heading tracking-wider uppercase text-muted-foreground border-b border-muted pb-2'>Hunter Stats</h3>
-       <div className='grid grid-cols-1 gap-4'>
-          {statItems.map((stat) => (
-             <div key={stat.label} className='flex items-center justify-between group cursor-default'>
-                <div className='flex items-center gap-3'>
-                   <span className='text-muted-foreground font-mono w-8'>{stat.label}</span>
-                   <span className='text-xs text-muted-foreground/50 opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest'>{stat.name}</span>
-                </div>
-                <div className='font-mono text-lg text-primary group-hover:text-white transition-colors bg-white/5 px-2 rounded-sm min-w-[40px] text-center'>
-                   {stat.value}
-                </div>
-             </div>
-          ))}
-       </div>
-    </Card>
-  );
+export const StatsSummary = () => {
+    return (
+        <Card className='p-6 bg-panel-bg/90 backdrop-blur-md border border-primary/20 shadow-system-panel relative overflow-hidden group h-full'>
+            {/* Decorative Header */}
+            <div className='flex items-center justify-between mb-8 border-b border-primary/10 pb-4'>
+                <h3 className='text-xl font-heading font-bold uppercase tracking-widest text-white flex items-center gap-2'>
+                    STATUS
+                </h3>
+                <span className='text-xs font-mono text-muted-foreground animate-pulse'>[UPDATED]</span>
+            </div>
+
+            <div className='space-y-6 relative z-10'>
+                {stats.map((stat, i) => (
+                    <div key={i} className='group/stat'>
+                        <div className='flex items-end justify-between mb-2'>
+                            <span className='text-sm font-mono text-muted-foreground flex items-center gap-2'>
+                                <span className='w-1 h-3 bg-primary/20 group-hover/stat:bg-primary transition-colors' />
+                                {stat.code}
+                            </span>
+                            <span className={`text-xl font-heading font-bold ${stat.color} drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]`}>
+                                {stat.value}
+                            </span>
+                        </div>
+                        <div className='h-1 w-full bg-muted/20 overflow-hidden'>
+                            <div
+                                className={`h-full ${stat.color.replace('text', 'bg')} opacity-60 shadow-[0_0_10px_currentColor] group-hover/stat:opacity-100 transition-all duration-500`}
+                                style={{ width: `${stat.value}%` }}
+                            />
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* Decorative bottom text */}
+            <div className='mt-8 pt-4 border-t border-primary/10 text-[10px] font-mono text-muted-foreground text-center tracking-[0.2em] opacity-50 uppercase'>
+                Vessel Performance: Optimal
+            </div>
+        </Card>
+    );
 };
