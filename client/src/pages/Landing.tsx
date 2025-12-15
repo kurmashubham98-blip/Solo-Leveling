@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
-import { Activity, Bell, Sword, Shield, ChevronRight, Terminal, Cpu, Zap } from 'lucide-react';
+import { Activity, Sword, Shield, ChevronRight, Terminal, Cpu, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const Landing = () => {

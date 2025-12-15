@@ -1,6 +1,5 @@
 import { Badge } from './ui/badge';
-import { Progress } from './ui/progress';
-import { Coins, Heart, Zap, Skull } from 'lucide-react';
+import { Coins, Heart, Zap } from 'lucide-react';
 
 interface PlayerHUDProps {
     player: {

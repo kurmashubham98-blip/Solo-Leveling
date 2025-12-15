@@ -7,7 +7,7 @@ import { QuestCard } from '../components/QuestCard';
 import { Sword, LayoutDashboard, User, BarChart2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { api } from '../services/api';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 export const Dashboard = () => {
     const [activeTab, setActiveTab] = useState('daily');

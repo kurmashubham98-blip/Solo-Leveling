@@ -1,14 +1,26 @@
 import { Card } from './ui/card';
 
-const stats = [
-    { label: 'STRENGTH', value: 85, code: 'STR', color: 'text-danger' },
-    { label: 'AGILITY', value: 72, code: 'AGI', color: 'text-primary' },
-    { label: 'SENSE', value: 92, code: 'SNS', color: 'text-secondary' },
-    { label: 'VITALITY', value: 64, code: 'VIT', color: 'text-success' },
-    { label: 'INTELLIGENCE', value: 88, code: 'INT', color: 'text-warning' }
-];
+interface StatsSummaryProps {
+    stats?: {
+        strength: number;
+        agility: number;
+        intelligence: number;
+        vitality: number;
+        sense: number;
+    }
+}
 
-export const StatsSummary = () => {
+const defaultStats = { strength: 85, agility: 72, intelligence: 88, vitality: 64, sense: 92 };
+
+export const StatsSummary = ({ stats = defaultStats }: StatsSummaryProps) => {
+    const displayStats = [
+        { label: 'STRENGTH', value: stats.strength, code: 'STR', color: 'text-danger' },
+        { label: 'AGILITY', value: stats.agility, code: 'AGI', color: 'text-primary' },
+        { label: 'SENSE', value: stats.sense, code: 'SNS', color: 'text-secondary' },
+        { label: 'VITALITY', value: stats.vitality, code: 'VIT', color: 'text-success' },
+        { label: 'INTELLIGENCE', value: stats.intelligence, code: 'INT', color: 'text-warning' }
+    ];
+
     return (
         <Card className='p-6 bg-panel-bg/90 backdrop-blur-md border border-primary/20 shadow-system-panel relative overflow-hidden group h-full'>
             {/* Decorative Header */}
@@ -20,7 +32,7 @@ export const StatsSummary = () => {
             </div>
 
             <div className='space-y-6 relative z-10'>
-                {stats.map((stat, i) => (
+                {displayStats.map((stat, i) => (
                     <div key={i} className='group/stat'>
                         <div className='flex items-end justify-between mb-2'>
                             <span className='text-sm font-mono text-muted-foreground flex items-center gap-2'>
