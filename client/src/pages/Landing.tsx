@@ -1,118 +1,135 @@
 import { motion } from 'framer-motion';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
-import { Activity, Bell, Sword, Shield, ChevronRight } from 'lucide-react';
+import { Activity, Bell, Sword, Shield, ChevronRight, Terminal, Cpu, Zap } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const Landing = () => {
     return (
-        <div className='bg-background min-h-screen relative overflow-hidden text-text-primary font-sans'>
+        <div className='bg-background min-h-screen relative overflow-hidden text-text-primary font-sans selection:bg-primary/30 selection:text-white'>
+
+            {/* Dynamic Background Elements */}
+            <div className='absolute inset-0 pointer-events-none'>
+                <div className='absolute top-20 left-10 w-64 h-64 bg-primary/5 rounded-full blur-[100px] animate-pulse' />
+                <div className='absolute bottom-20 right-10 w-96 h-96 bg-secondary/5 rounded-full blur-[120px] animate-pulse' style={{ animationDelay: '2s' }} />
+            </div>
+
+            {/* Navbar / System Header */}
+            <header className='fixed top-0 w-full z-50 border-b border-primary/20 bg-background/80 backdrop-blur-md'>
+                <div className='max-w-7xl mx-auto px-6 h-16 flex items-center justify-between'>
+                    <div className='flex items-center gap-2 text-primary font-heading tracking-widest uppercase'>
+                        <Terminal className='w-5 h-5' />
+                        <span>System OS v2.0</span>
+                    </div>
+                    <div className='flex items-center gap-4 text-xs font-mono text-muted-foreground'>
+                        <span className='animate-pulse text-success'>● ONLINE</span>
+                        <span>ID: PLAYER_01</span>
+                    </div>
+                </div>
+            </header>
 
             {/* Hero Section */}
-            <section className='relative pt-32 pb-20 px-6'>
+            <section className='relative pt-40 pb-20 px-6'>
                 <div className='max-w-7xl mx-auto'>
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className='text-center space-y-6 max-w-4xl mx-auto z-10 relative'
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1 }}
+                        className='text-center space-y-8 max-w-5xl mx-auto z-10 relative'
                     >
-                        <h1 className='text-6xl md:text-8xl font-black font-heading tracking-tighter uppercase mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-500'>
-                            The <span className='text-primary drop-shadow-[0_0_20px_rgba(0,240,255,0.8)]'>System</span><br />Awaits You
+                        <div className='inline-flex items-center gap-2 px-3 py-1 border border-primary/30 rounded-full bg-primary/5 text-primary text-xs font-mono tracking-widest mb-4 animate-in fade-in slide-in-from-bottom-4 duration-1000'>
+                            <Zap className='w-3 h-3' /> SYSTEM NOTIFICATION RECEIVED
+                        </div>
+
+                        <h1 className='text-6xl md:text-9xl font-black font-heading tracking-tighter uppercase mb-4 text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 drop-shadow-2xl'>
+                            Awaken <br />
+                            <span className='text-primary relative inline-block'>
+                                Your Power
+                                <span className='absolute inset-0 blur-lg bg-primary/30 block' />
+                            </span>
                         </h1>
-                        <p className='text-xl text-muted-foreground font-light tracking-wide max-w-2xl mx-auto'>
-                            Gamify your existence. Complete daily quests, level up your stats, and become the main character of your own story.
+
+                        <p className='text-xl md:text-2xl text-text-secondary font-light tracking-wide max-w-2xl mx-auto font-mono border-l-2 border-primary/50 pl-6 text-left md:text-center md:border-l-0 md:pl-0'>
+                            "You have daily quests pending. Failure to complete them will result in penalties."
                         </p>
 
-                        <div className='flex items-center justify-center gap-6 pt-8'>
-                            <Button size='lg' className='text-lg px-10 py-6 animate-pulse'>
-                                Player Login <ChevronRight className='ml-2 w-5 h-5' />
-                            </Button>
-                            <Button variant='outline' size='lg' className='text-lg px-10 py-6 border-white/20 text-white hover:bg-white/5'>
-                                View Demo
+                        <div className='flex flex-col md:flex-row items-center justify-center gap-6 pt-12'>
+                            <Link to="/dashboard">
+                                <Button size='lg' className='text-xl px-12 py-8 bg-primary text-black hover:bg-primary/90 shadow-[0_0_30px_rgba(0,240,255,0.4)] hover:shadow-[0_0_50px_rgba(0,240,255,0.6)] font-heading tracking-widest uppercase relative overflow-hidden group border-2 border-transparent hover:border-white transition-all'>
+                                    <span className='relative z-10 flex items-center gap-2'> Accept Quest <ChevronRight className='w-6 h-6' /> </span>
+                                    <div className='absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300' />
+                                </Button>
+                            </Link>
+                            <Button variant='outline' size='lg' className='text-xl px-12 py-8 border-primary/30 text-primary hover:bg-primary/10 font-heading tracking-widest uppercase'>
+                                System Guide
                             </Button>
                         </div>
                     </motion.div>
                 </div>
-                <div className='absolute inset-0 bg-[linear-gradient(rgba(0,240,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,240,255,0.1)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)] pointer-events-none' />
             </section>
 
-            {/* Features Section */}
-            <section className='py-24 px-6 relative z-10'>
-                <div className='max-w-7xl mx-auto'>
-                    <div className='grid md:grid-cols-2 gap-16 items-center'>
-                        <div className='space-y-6'>
-                            <h2 className='text-4xl font-heading font-bold uppercase text-white'><span className='text-secondary'>Visualize</span> Your Rise</h2>
-                            <p className='text-muted-foreground text-lg'>
-                                Track every XP gain. Monitor your consistency with our advanced activity heatmap and growth charts. The numbers don't lie.
-                            </p>
-                            <ul className='space-y-4 font-heading tracking-wider text-sm'>
-                                <li className='flex items-center gap-3'><Activity className='text-secondary' /> REAL-TIME GROWTH ANALYTICS</li>
-                                <li className='flex items-center gap-3'><Activity className='text-secondary' /> STREAK TRACKING PROTOCOLS</li>
-                                <li className='flex items-center gap-3'><Activity className='text-secondary' /> LEVEL UP REWARDS</li>
-                            </ul>
-                        </div>
-                        <motion.div
-                            className='relative'
-                            whileHover={{ scale: 1.02 }}
-                            transition={{ duration: 0.5 }}
-                        >
-                            <div className='absolute inset-0 bg-secondary/20 blur-3xl rounded-full' />
-                            <Card className='p-8 relative bg-black/80 border-secondary/30'>
-                                <div className='flex items-end justify-between h-64 gap-2'>
-                                    {[40, 60, 30, 80, 55, 90, 100].map((h, i) => (
-                                        <motion.div
-                                            key={i}
-                                            initial={{ height: 0 }}
-                                            whileInView={{ height: `${h}%` }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: i * 0.1, duration: 1 }}
-                                            className='w-full bg-secondary shadow-[0_0_10px_rgba(189,0,255,0.5)] rounded-t-sm opacity-80'
-                                        />
-                                    ))}
-                                </div>
-                                <div className='mt-4 flex justify-between text-xs font-mono text-muted-foreground'>
-                                    <span>MON</span><span>SUN</span>
-                                </div>
-                            </Card>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Cards Section */}
-            <section className='py-24 px-6 bg-black/50'>
-                <div className='max-w-7xl mx-auto'>
-                    <div className='text-center mb-16 space-y-4'>
-                        <h2 className='text-4xl font-heading font-bold uppercase'>System Features</h2>
-                        <p className='text-muted-foreground'>Tools designed for your ascension.</p>
+            {/* Feature Grid / Modules */}
+            <section className='py-32 px-6 relative z-10'>
+                <div className='max-w-7xl mx-auto space-y-16'>
+                    <div className='text-center space-y-4'>
+                        <h2 className='text-4xl font-heading font-bold uppercase text-white flex items-center justify-center gap-3'>
+                            <Cpu className='text-secondary w-8 h-8' /> System Modules
+                        </h2>
+                        <div className='h-1 w-24 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto' />
                     </div>
 
                     <div className='grid md:grid-cols-3 gap-8'>
                         {[
-                            { icon: Bell, title: 'Smart Directives', desc: 'The System verifies your schedule. Timely alerts ensure you never miss a daily quest.', color: 'text-warning' },
-                            { icon: Sword, title: 'Habit Arsenal', desc: 'Manage your inventory of skills. Turn mundane tasks into epic quests for XP.', color: 'text-primary' },
-                            { icon: Shield, title: 'Penalty System', desc: 'Failure has consequences. Miss a quest, lose HP. Survive to see another day.', color: 'text-danger' }
+                            {
+                                icon: Activity,
+                                title: 'Growth Analytics',
+                                desc: 'Visualize your rise. Track XP, Stats, and consistency with military precision.',
+                                color: 'text-primary',
+                                border: 'border-primary/20',
+                                bg: 'bg-primary/5'
+                            },
+                            {
+                                icon: Sword,
+                                title: 'Quest Management',
+                                desc: 'Daily, Weekly, and Main quests issued by the system. Complete them to survive.',
+                                color: 'text-secondary',
+                                border: 'border-secondary/20',
+                                bg: 'bg-secondary/5'
+                            },
+                            {
+                                icon: Shield,
+                                title: 'Status Recovery',
+                                desc: 'Monitor HP and fatigue. Ensure your vessel is prepared for the next dungeon.',
+                                color: 'text-success',
+                                border: 'border-success/20',
+                                bg: 'bg-success/5'
+                            }
                         ].map((feature, i) => (
-                            <Card key={i} className='p-8 hover:bg-white/5 transition-colors border-muted group'>
-                                <feature.icon className={`w-12 h-12 mb-6 ${feature.color} group-hover:shadow-[0_0_10px_rgba(189,0,255,0.5)] transition-transform duration-300`} />
-                                <h3 className='text-2xl font-heading font-bold uppercase mb-4'>{feature.title}</h3>
-                                <p className='text-muted-foreground'>{feature.desc}</p>
-                            </Card>
+                            <motion.div
+                                key={i}
+                                whileHover={{ y: -5 }}
+                                className={`p-1 rounded-sm bg-gradient-to-b from-transparent via-transparent to-${feature.border.split('-')[1]}/10`}
+                            >
+                                <Card className={`h-full p-8 bg-black/60 backdrop-blur-sm border ${feature.border} relative overflow-hidden group hover:border-opacity-100 transition-colors`}>
+                                    <div className={`absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity`}>
+                                        <feature.icon className={`w-24 h-24 ${feature.color}`} />
+                                    </div>
+                                    <feature.icon className={`w-12 h-12 mb-6 ${feature.color} drop-shadow-[0_0_10px_rgba(0,0,0,0.5)]`} />
+                                    <h3 className='text-2xl font-heading font-bold uppercase mb-4 text-white group-hover:text-glow transition-all'>{feature.title}</h3>
+                                    <p className='text-text-secondary font-mono text-sm leading-relaxed'>{feature.desc}</p>
+                                </Card>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* CTA Section */}
-            <section className='py-32 px-6 relative'>
-                <div className='absolute inset-0 bg-primary/5 [mask-image:linear-gradient(to_bottom,transparent,black,transparent)]' />
-                <div className='max-w-4xl mx-auto text-center relative z-10 space-y-8'>
-                    <h2 className='text-5xl font-heading font-bold uppercase'>Ready to Ascend?</h2>
-                    <Button size='lg' className='text-xl px-12 py-8 shadow-[0_0_40px_rgba(0,240,255,0.5)] hover:shadow-[0_0_60px_rgba(0,240,255,0.8)] transition-shadow duration-500'>
-                        ACCEPT INVITATION
-                    </Button>
-                </div>
-            </section>
+            {/* Decorative Footer */}
+            <footer className='border-t border-white/5 bg-black py-12 text-center'>
+                <p className='text-xs font-mono text-muted-foreground uppercase tracking-[0.3em]'>
+                    System Administrator © 2024 // All Rights Reserved
+                </p>
+            </footer>
 
         </div>
     );
